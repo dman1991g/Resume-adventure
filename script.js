@@ -6,13 +6,35 @@ const modalContent = document.getElementById("modal-content");
 
 let pos = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
 
+// Keyboard controls
 document.addEventListener("keydown", (e) => {
-  const step = 20;
-  if (e.key === "ArrowUp") pos.y -= step;
-  if (e.key === "ArrowDown") pos.y += step;
-  if (e.key === "ArrowLeft") pos.x -= step;
-  if (e.key === "ArrowRight") pos.x += step;
+  const keys = {
+    "ArrowUp": "up",
+    "ArrowDown": "down",
+    "ArrowLeft": "left",
+    "ArrowRight": "right"
+  };
+  if (keys[e.key]) {
+    movePlayer(keys[e.key]);
+  }
+});
 
+// Touch controls
+document.querySelectorAll("#mobile-controls button").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const direction = btn.dataset.dir;
+    movePlayer(direction);
+  });
+});
+
+function movePlayer(direction) {
+  const step = 20;
+  if (direction === "up") pos.y -= step;
+  if (direction === "down") pos.y += step;
+  if (direction === "left") pos.x -= step;
+  if (direction === "right") pos.x += step;
+
+  // Keep player within the screen
   pos.x = Math.max(0, Math.min(window.innerWidth - 40, pos.x));
   pos.y = Math.max(0, Math.min(window.innerHeight - 40, pos.y));
 
@@ -20,7 +42,7 @@ document.addEventListener("keydown", (e) => {
   player.style.top = pos.y + "px";
 
   checkZone();
-});
+}
 
 function checkZone() {
   let found = false;
@@ -34,16 +56,22 @@ function checkZone() {
       pos.y < rect.bottom
     ) {
       zone.classList.add("active");
-      info.textContent = `You entered ${zone.textContent}! Press Enter to interact.`;
+      info.textContent = `You entered ${zone.textContent}! Press Enter or Tap to interact.`;
       found = true;
 
       document.onkeydown = (e) => {
         if (e.key === "Enter") openModal(zone.id);
       };
+
+      // Also allow tapping the zone
+      zone.onclick = () => openModal(zone.id);
+    } else {
+      zone.onclick = null;
     }
   });
+
   if (!found) {
-    info.textContent = "Use arrow keys to explore!";
+    info.textContent = "Use arrow keys or on-screen buttons to explore!";
     document.onkeydown = null;
   }
 }
