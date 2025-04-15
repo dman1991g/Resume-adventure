@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Daniel Graham's Portfolio Adventure</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="game">
+  <div id="player"></div>
+  <div class="zone" id="resume" style="top:10%; left:5%; width:20%; height:20%;">Resume Forest</div>
+  <div class="zone" id="projects" style="top:10%; right:5%; width:20%; height:20%;">Project Plaza</div>
+  <div class="zone" id="about" style="bottom:30%; left:10%; width:25%; height:20%;">About Me Mountain</div>
+  <div class="zone" id="contact" style="bottom:10%; right:10%; width:25%; height:15%;">Contact Cave</div>
+</div>
+<div id="info">Use arrow keys to explore!</div>
+<div id="modal" class="hidden">
+  <div id="modal-content"></div>
+  <button onclick="closeModal()">Close</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
