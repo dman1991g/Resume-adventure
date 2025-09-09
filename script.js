@@ -85,8 +85,8 @@ function openModal(zoneId) {
       content = `
         <h2>Resume Forest</h2>
         <p><strong>Current Role:</strong> Learning Ambassador at Amazon</p>
-        <p>Trains new hires, creates safety modules, and provides hands-on coaching.</p>
-        <p><strong>Past Role:</strong> Fulfillment Associate – Managed 90k+ package workflow and exceeded scan quotas.</p>
+        <p>Trains new hires on safety procedures,as well as how to work in there expected area.</p>
+        <p><strong>Past Role:</strong> Fulfillment Associate</p>
         <p><strong>Education:</strong> Correlation One – HTML, CSS, JavaScript, WordPress</p>
       `;
       break;
